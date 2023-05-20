@@ -11,7 +11,8 @@ pipeline {
 
 	stages {
 
-		stage('Build'){
+		stage('Build')
+		{
 			steps {
 				bat "mvn clean install -DskipTests"
 			}
@@ -22,7 +23,19 @@ pipeline {
 				bat "mvn test"
 			}
 		}
-		stage('Dockerize'){
+
+		stage('SonarQube Analysis')
+		{
+            steps {
+                  withSonarQubeEnv('sonarscanner')
+                        {
+                            bat 'mvn sonar:sonar'
+                        }
+                    }
+        }
+
+		stage('Dockerize')
+		{
             steps {
                   script {
                         docker.build("dream-case:${env.BUILD_NUMBER}", "-f Dockerfile .")
@@ -30,5 +43,6 @@ pipeline {
                          }
                   }
         }
+
 	}
 }
