@@ -6,6 +6,7 @@ import com.inventiveit.request.DreamCaseRequest;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface DreamCaseService {
 
@@ -16,4 +17,6 @@ public interface DreamCaseService {
     ResponseEntity<DreamCaseDTO> createDreamCase(DreamCaseRequest dreamCaseRequest);
 
     ResponseEntity<DreamCaseDTO> deleteDreamCase(BigDecimal id) throws DreamCaseNotFoundException;
+
+    ResponseEntity<List<DreamCaseDTO>> getAllDreamCases();
 }

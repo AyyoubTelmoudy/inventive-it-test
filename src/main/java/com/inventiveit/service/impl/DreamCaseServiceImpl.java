@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /*
 This is the service layer that containing all methods used by the controller layer and responsible for the business taken over records
@@ -92,5 +93,14 @@ public class DreamCaseServiceImpl implements DreamCaseService {
         {
             throw new DreamCaseNotFoundException(ErrorMessage.DREAM_CASE_NOT_FOUND);
         }
+    }
+
+    /*
+      This method returns all dreamCases
+   */
+    @Override
+    public ResponseEntity<List<DreamCaseDTO>> getAllDreamCases() {
+        List<DreamCaseDTO> dreamCaseDTOS=dreamCaseMapper.fromDreamCaseToDreamCaseDTO(dreamCaseRepository.findAll());
+        return new ResponseEntity<>(dreamCaseDTOS,new HttpHeaders(), HttpStatus.ACCEPTED);
     }
 }

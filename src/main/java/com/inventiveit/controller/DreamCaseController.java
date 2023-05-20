@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.util.List;
 
 /*
 This class represents the controller that exposes the endpoints of handling DreamCase records
@@ -26,6 +27,14 @@ public class DreamCaseController {
     @GetMapping("/{id}")
     public ResponseEntity<DreamCaseDTO> getDreamCaseById(@PathVariable BigDecimal id) throws DreamCaseNotFoundException {
        return dreamCaseService.getDreamCaseById(id);
+    }
+
+    /*
+    This API returns all dreamCases
+    */
+    @GetMapping
+    public ResponseEntity<List<DreamCaseDTO>> getAllDreamCases(){
+        return dreamCaseService.getAllDreamCases();
     }
 
     /*
