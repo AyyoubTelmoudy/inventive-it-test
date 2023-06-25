@@ -21,10 +21,11 @@ public class InventiveitTestApplication {
 	public CommandLineRunner start(DreamCaseRepository dreamCaseRepository) {
 		return args -> {
 
-System.out.println("************");
+
 System.out.println("1111111111111111111111111111111111111111111111");
 System.out.println("1111111111111111111111111111111111111111111111");
 System.out.println("1111111111111111111111111111111111111111111111");
+System.out.println("666666666666666666");
 			for (int i = 0; i < 3; i++) {
 				DreamCase dreamCase=new DreamCase(null, LocalDateTime.now(),LocalDateTime.now(),"Title "+i,"Description "+i);
 				System.out.println(dreamCaseRepository.save(dreamCase));
